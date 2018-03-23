@@ -1,4 +1,4 @@
-package io.lab.biblio.dao;
+package io.lab.biblio.framework.dao;
 
 import org.springframework.stereotype.Component;
 

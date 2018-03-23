@@ -1,4 +1,4 @@
-package io.lab.biblio;
+package io.lab.biblio.framework;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.servlet.annotation.WebServlet;
 
 /**
- * Created by amazimpaka on 2018-03-02
+ * Created by amazimpaka on 2018-03-23
  */
 @SpringBootApplication(scanBasePackages = {"io.lab.biblio"})
 public class MainApplication {
