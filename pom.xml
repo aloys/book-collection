@@ -27,6 +27,8 @@
 
         <org.springframework.boot.version>1.5.9.RELEASE</org.springframework.boot.version>
         <org.springframework.springloaded.version>1.2.7.RELEASE</org.springframework.springloaded.version>
+
+        <org.elasticsearch.version>6.2.3</org.elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -75,20 +77,29 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.0.Final</version>
+        </dependency>
+
+
+        <!-- ================= Elasticsearch ================= -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${org.elasticsearch.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>${org.elasticsearch.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${org.elasticsearch.version}</version>
         </dependency>
 
     </dependencies>
