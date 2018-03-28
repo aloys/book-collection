@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,8 +37,10 @@ public class ConverterCache {
         CONVETERS_CACHE.put(Long.class, new StringToLongConverter("Invalid value"));
         CONVETERS_CACHE.put(Long.TYPE, new StringToLongConverter("Invalid value"));
 
-        CONVETERS_CACHE.put(Boolean.class, new StringToBooleanConverter("Invalid value"));
+       CONVETERS_CACHE.put(Boolean.class, new StringToBooleanConverter("Invalid value"));
         CONVETERS_CACHE.put(Boolean.TYPE, new StringToBooleanConverter("Invalid value"));
+
+       CONVETERS_CACHE.put(Date.class, new LocalDateToDateConverter());
 
 
     }

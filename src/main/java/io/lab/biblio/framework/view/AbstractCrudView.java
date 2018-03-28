@@ -72,14 +72,7 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
         refresh();
     }
 
-    protected void refresh() {
-        logger.debug("Executing table refresh");
-
-        if (grid != null && service != null) {
-            grid.setItems(service.findlAll());
-        }
-        hideFrom();
-    }
+    protected abstract void refresh();
 
 
     protected void create() {
@@ -94,19 +87,8 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
         }
     }
 
-    protected void delete() {
-        logger.debug("Executing delete item");
+    protected abstract void delete() ;
 
-        final E selected = (E) grid.asSingleSelect().getValue();
-
-        if (selected != null) {
-            service.delete(selected);
-            refresh();
-            NOTIFICATION_MANAGER.showTrayMessage(String.format("%s with id: %s was deleted", entityClass.getSimpleName(), selected.getId()));
-        } else {
-            NOTIFICATION_MANAGER.showWarnMessage(String.format("Please select a %s to delete", entityClass.getSimpleName()));
-        }
-    }
 
     protected void update() {
         logger.debug("Executing delete item");
@@ -129,16 +111,7 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
     }
 
 
-    protected void save() {
-        logger.debug("Executing save item");
-
-        final E entity = getBinder().getBean();
-        service.save(entity);
-        refresh();
-
-        NOTIFICATION_MANAGER.showTrayMessage(String.format("%s with id: %s was saved", entityClass.getSimpleName(), entity.getId()));
-
-    }
+    protected abstract void save();
 
     protected void showFrom() {
         if (formPanel != null) {

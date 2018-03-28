@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * Created by amazimpaka on 2018-03-23
  */
-public interface Item<ID extends Serializable>  extends Serializable{
+public interface Item extends Serializable{
 
-    ID getId();
+    String getId();
 
-    void setId(ID id);
+    void setId(String id);
 }

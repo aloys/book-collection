@@ -7,23 +7,23 @@ import java.util.Date;
 /**
  * Created by amazimpaka on 2018-03-23
  */
-public class Book implements Item<Long> {
+public class Book implements Item {
 
-    private Long id;
+    private String id;
 
     private String title;
 
     private String author;
 
-    private Date publishDate;
+    private int publishYear;
 
     @Override
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,11 +43,11 @@ public class Book implements Item<Long> {
         this.author = author;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public int getPublishYear() {
+        return publishYear;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setPublishYear(int publishYear) {
+        this.publishYear = publishYear;
     }
 }

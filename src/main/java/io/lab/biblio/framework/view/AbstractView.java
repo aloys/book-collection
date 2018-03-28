@@ -70,6 +70,7 @@ public class AbstractView<E>  extends VerticalLayout implements View {
                     Binder.BindingBuilder<E, BV> bindingBuilder = getBinder()
                             .forField(field)
                             .withValidator(new BeanValidator(entityClass, propertyName))
+                            .withNullRepresentation(null)
                             .withConverter(converter);
 
                     final ValueProvider<E, BV> getter = propertyDefinition.getGetter();
