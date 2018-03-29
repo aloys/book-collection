@@ -92,11 +92,12 @@ of entity E found by reflection. Any non-null field value will be updated.
 
 ## 2. Screenshots
 
+These are sample view screenshots for the indexing (Create) operation.
 
-- Review Management:( https://github.com/aloys/customer-review/blob/master/doc/Screen_Shot_04_Reviews.png )
-- Users Master Data: (https://github.com/aloys/customer-review/blob/master/doc/Screen_Shot_03_Users.png)
-- Products Master Data: (https://github.com/aloys/customer-review/blob/master/doc/Screen_Shot_02_Products.png)
-- Configuration - rating range and restricted words: (https://github.com/aloys/customer-review/blob/master/doc/Screen_Shot_01_Configurations.png)
+- Create index: (https://github.com/aloys/book-collection/blob/master/doc/01_Create_Index.png)
+- Refresh indexes: (https://github.com/aloys/book-collection/blob/master/doc/02_Refresh_Indexes.png)
+- Check in Kibana: (https://github.com/aloys/book-collection/blob/master/doc/03_Check_Kibana.png)
+
 
 ## 3. Execution
 
