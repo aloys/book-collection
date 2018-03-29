@@ -53,7 +53,7 @@ public interface ElasticsearchService<E extends Item> {
 }
 ```
 
-The _findByID_ method will throw an _IndexNotFoundException_ exception if no result can be found, and search method will return
+The _findByID_ method will throw an [_IndexNotFoundException_](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/exception/IndexNotFoundException.java) exception if no result can be found, and search method will return
 empty list in case there is no index yet created.
 
 ### 1.3. Update Operation
