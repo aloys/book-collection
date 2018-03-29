@@ -4,7 +4,7 @@
 ## 1. Main Logic
 
 This application is simple book collection with CRUD operations on a Book entity, using Elasticsearch for persistence.
-The main service [**ElasticsearchServiceImpl**] (https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java):
+The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java):
 
 ```python
 public interface ElasticsearchService<E extends Item> {
