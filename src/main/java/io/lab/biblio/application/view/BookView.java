@@ -28,7 +28,7 @@ public class BookView extends AbstractCrudView<Book> {
     public void initialize() {
         super.initialize();
         //Table columns in sorted order
-        grid.setColumns("id","title","author","publishYear");
+        grid.setColumns("id","title","author");
     }
 
     @Override
