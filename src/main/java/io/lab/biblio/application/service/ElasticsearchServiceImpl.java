@@ -1,10 +1,13 @@
-package io.lab.biblio.framework.service;
+package io.lab.biblio.application.service;
 
-import io.lab.biblio.framework.model.Item;
+import io.lab.biblio.application.exception.IndexNotFoundException;
+import io.lab.biblio.application.model.Item;
 import io.lab.biblio.framework.util.ReflectionUtil;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -26,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Optional;
 
 import static org.apache.http.HttpHost.DEFAULT_SCHEME_NAME;
 
@@ -34,11 +37,9 @@ import static org.apache.http.HttpHost.DEFAULT_SCHEME_NAME;
  * Created by amazimpaka on 2018-03-23
  */
 @Service
-public class ItemManagerServiceImpl<E extends Item> implements ItemManagerService<E> {
+public class ElasticsearchServiceImpl<E extends Item> implements ElasticsearchService<E> {
 
-    private static final Logger logger = LoggerFactory.getLogger(ItemManagerServiceImpl.class);
-
-    public static final String DOCUMENT_ID_FIELD = "_id";
+    private static final Logger logger = LoggerFactory.getLogger(ElasticsearchServiceImpl.class);
 
     @Value("${elasticsearch.server.host:localhost}")
     private String host;
@@ -57,6 +58,38 @@ public class ItemManagerServiceImpl<E extends Item> implements ItemManagerServic
         logger.info("Connected to Elasticsearch - host: {} / port: {}", host, port);
     }
 
+
+    @Override
+    public Optional<E> findById(Class<E> entityClass, String index, String type, String indexId) throws IOException {
+        try (RestHighLevelClient client = new RestHighLevelClient(restClientBuilder)) {
+
+            final GetRequest request = new GetRequest(index,type,indexId);
+            logger.debug("ES Find by ID Request: {}", request);
+
+            final GetResponse response = client.get(request);
+            logger.debug("ES Find by ID Response: {}", response);
+
+            if(!response.isExists()
+                    || response.getSourceAsMap() == null
+                    || response.getSourceAsMap().isEmpty()){
+
+                throw new IndexNotFoundException(index,type,indexId);
+            }
+
+            // Write each search hit results into a given entity instance
+            final E entity = ReflectionUtil.newInstance(entityClass);
+            final Map<String, Object> values = response.getSourceAsMap();
+            ReflectionUtil.writeValues(entity, values);
+            entity.setId(response.getId());
+
+            return Optional.ofNullable(entity);
+
+        } catch (IOException e) {
+            logger.warn("Failed to get from index {} of type: {} with id:", index, type,indexId);
+            throw e;
+        }
+
+    }
 
     @Override
     public List<E> search(Class<E> entityClass, String index, String type) throws IOException {
@@ -124,12 +157,12 @@ public class ItemManagerServiceImpl<E extends Item> implements ItemManagerServic
 
             //Step 1: Create ElasticSearch index request
             final String indexId = String.valueOf(System.currentTimeMillis());
-            final IndexRequest indexRequest = new IndexRequest(index, type, indexId).source(indexValues);
-            logger.debug("ES Request: {}", indexRequest);
+            final IndexRequest request = new IndexRequest(index, type, indexId).source(indexValues);
+            logger.debug("ES Create Request: {}", request);
 
             //Step 2: Invoke ElasticSearch and return index response
-            final IndexResponse indexResponse = client.index(indexRequest);
-            logger.debug("ES Response: {}", indexResponse);
+            final IndexResponse response = client.index(request);
+            logger.debug("ES Create Response: {}", response);
 
             return indexId;
 
@@ -162,12 +195,12 @@ public class ItemManagerServiceImpl<E extends Item> implements ItemManagerServic
         try (RestHighLevelClient client = new RestHighLevelClient(restClientBuilder)) {
 
             //Step 1: Create ElasticSearch index request
-            final UpdateRequest updateRequest = new UpdateRequest(index, type, indexId).doc(indexValues);
-            logger.debug("ES Request: {}", updateRequest);
+            final UpdateRequest request = new UpdateRequest(index, type, indexId).doc(indexValues);
+            logger.debug("ES Update Request: {}", request);
 
             //Step 2: Invoke ElasticSearch and return index response
-            final UpdateResponse updateResponse = client.update(updateRequest);
-            logger.debug("ES Response: {}", updateResponse);
+            final UpdateResponse response = client.update(request);
+            logger.debug("ES Update Response: {}", response);
 
         } catch (IOException e) {
             logger.warn("Failed to create index {} of type: {} with values: {}", index, type, indexValues);
@@ -185,9 +218,10 @@ public class ItemManagerServiceImpl<E extends Item> implements ItemManagerServic
     public void delete(String indexId, String index, String type) throws IOException {
         try (RestHighLevelClient client = new RestHighLevelClient(restClientBuilder)) {
             final DeleteRequest request = new DeleteRequest(index,type,indexId);
-            final DeleteResponse deleteResponse = client.delete(request);
+            logger.debug("ES Delete Request: {}", request);
 
-            logger.debug("ES Response: {}", deleteResponse);
+            final DeleteResponse response = client.delete(request);
+            logger.debug("ES Delete Response: {}", response);
 
         } catch (IOException e) {
             logger.warn("Failed to create index {} of type: {} with id: {}", index, type, indexId);
@@ -196,6 +230,13 @@ public class ItemManagerServiceImpl<E extends Item> implements ItemManagerServic
 
     }
 
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
 }
 
 

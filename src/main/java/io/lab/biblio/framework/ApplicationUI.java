@@ -13,7 +13,7 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import io.lab.biblio.framework.view.DefaultView;
-import io.lab.biblio.application.view.book.BookView;
+import io.lab.biblio.application.view.BookView;
 import io.lab.biblio.framework.view.exception.ApplicationErrorHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 

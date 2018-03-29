@@ -4,8 +4,8 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Sizeable;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import io.lab.biblio.framework.model.Item;
-import io.lab.biblio.framework.service.ItemManagerService;
+import io.lab.biblio.application.model.Item;
+import io.lab.biblio.application.service.ElasticsearchService;
 import io.lab.biblio.framework.util.ReflectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +37,7 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
     private boolean readOnlyMode;
 
     @Autowired
-    protected ItemManagerService<E> service;
+    protected ElasticsearchService<E> service;
 
     @PostConstruct
     public void initialize() {
@@ -140,7 +140,7 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
     }
 
 
-    public void setService(ItemManagerService<E> service) {
+    public void setService(ElasticsearchService<E> service) {
         this.service = service;
     }
 

@@ -1,4 +1,4 @@
-package io.lab.biblio.framework.model;
+package io.lab.biblio.application.model;
 
 import java.io.Serializable;
 

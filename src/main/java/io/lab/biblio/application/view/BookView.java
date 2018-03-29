@@ -1,4 +1,4 @@
-package io.lab.biblio.application.view.book;
+package io.lab.biblio.application.view;
 
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Component;
@@ -27,13 +27,13 @@ public class BookView extends AbstractCrudView<Book> {
     @PostConstruct
     public void initialize() {
         super.initialize();
+        //Table columns in sorted order
         grid.setColumns("id","title","author","publishYear");
     }
 
     @Override
     protected void refresh() {
         try {
-
             List<Book> search = service.search(Book.class, ELASTICSEARCH_INDEX, ELASTICSEARCH_TYPE);
             grid.setItems(search);
 

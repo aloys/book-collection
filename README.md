@@ -1,5 +1,11 @@
 # book-collection
 
+
+mvn install;
+
+Run integration test
+mvn install -DskipTests=false;
+
 Install Docker
 https://docs.docker.com/toolbox/overview/
 
