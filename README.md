@@ -141,7 +141,7 @@ http://localhost:9200/
 
 **Case 2: Using External Elasticsearch**
 
-If you wish to use another Elasticsearch installation run the application with these two runtime parameters _elasticsearch.server.host_ and
+If you wish to use another Elasticsearch installation, run the application with these two runtime parameters _elasticsearch.server.host_ and
 _elasticsearch.server.port_ for the host and port respectively
 
 
@@ -150,7 +150,7 @@ java -jar target/book-collection.war -Delasticsearch.server.host=${HOST} -D=elas
 ```
 
 
-## 4. Compile
+## 4. Compiling
 
 Run the following command:
 ```console
@@ -158,7 +158,7 @@ mvn clean install;
 ```
 **Requirements**: Java Development Kit(JDK) version 8 or higher.
 
-## 5. Compile
+## 5. Testing
 
 Unit tests provided is an integration test which requires Elasticsearch server to be up.
 Those unit tests are in the class: [**ElasticsearchServiceImplIntegrationTest**](https://github.com/aloys/book-collection/blob/master/src/test/java/io/lab/biblio/ElasticsearchServiceImplIntegrationTest.java)
