@@ -5,6 +5,7 @@
 
 This application is simple book collection with CRUD operations on a [**Book**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/model/Book.java) entity, using document based search engine Elasticsearch for persistence.
 The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface: [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java).
+This is a very generic component that is designed to handle any entity type.
 
 For this Book Collection application, all methods will operate on index named: **library** with type **book**.
 
@@ -28,9 +29,9 @@ public interface ElasticsearchService<E extends Item> {
 ```
 
 For a given entity E, the first method will call the second method with indexValues map as the values of the fields
-of entity E found by reflection. Any non-null field value will be indexed.
+of an entity E resolved by reflection. Any non-null field value will be indexed.
 
-A new *Elasticsearch index and type* will be created, if not existing.
+A new *Elasticsearch index and type* will be created, if they do not exist.
 
 Index id is calculated based on system current time (in milliseconds).
 
