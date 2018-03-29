@@ -122,9 +122,9 @@ That [**book-collection.war**](https://github.com/aloys/book-collection/blob/mas
 
 **Requirements**: Java Runtime Enviroment (JRE) version 8 or higher.
 
-### 3.1 Start Elasticsearch
+### 3.2 Start Elasticsearch
 
-*Case 1: Using Docker Container*
+**Case 1: Using Docker Container**
 
 If you have docker client (or toolbox) on your machine, then run this command to create a elk docker container:
 
@@ -140,7 +140,7 @@ http://localhost:5601/
 To acceess Elasticsearch open this URL
 http://localhost:9200/
 
-*Case 2: Using External Elasticsearch*
+**Case 2: Using External Elasticsearch**
 
 If you wish to use another Elasticsearch installation run the application with these two runtime parameters _elasticsearch.server.host_ and
 _elasticsearch.server.port_ for the host and port respectively
