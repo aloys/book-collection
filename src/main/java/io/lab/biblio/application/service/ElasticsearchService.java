@@ -24,8 +24,9 @@ public interface ElasticsearchService<E extends Item> {
      */
     Optional<E> findById(Class<E> entityClass, String index, String type, String indexId) throws IOException;
 
+
     /**
-     * Find all indexes currently saved in Elasticsearch
+     * Find all indexes currently saved in Elasticsearch, no criteria or restriction will be applied
      *
      * @param entityClass result entity type
      * @param index Elasticsearch index
@@ -40,8 +41,6 @@ public interface ElasticsearchService<E extends Item> {
      *  Create a index in Elasticsearch. All fields of this entity will be indexed
      *  with entity field name as index field name and entity field value as index field value
      *
-     *  field_name: field_value
-     *
      *  Only non-null value fields will be considered.
      *
      * @param entity entity whose content is to be indexed
@@ -54,12 +53,8 @@ public interface ElasticsearchService<E extends Item> {
 
 
     /**
-     *  Create a index in Elasticsearch from map value using map key  as index field name and
-     *  map value as index field value
-     *
-     *  field_name (key): field_value (value)
-     *
-     *  Only non-null value fields will be considered.
+     *  Create a index in Elasticsearch from map value using map key as index field name and
+     *  map value as index field value.
      *
      * @param indexValues key value map content to be indexed
      * @param index Elasticsearch index
@@ -73,8 +68,6 @@ public interface ElasticsearchService<E extends Item> {
      *  Update a given a index in Elasticsearch. All fields of this entity will be indexed
      *  with entity field name as index field name and entity field value as index field value
      *
-     *  field_name: field_value
-     *
      *  Only non-null value fields will be considered.
      *
      * @param entity entity whose content is to be updated
@@ -85,12 +78,8 @@ public interface ElasticsearchService<E extends Item> {
     void update(E entity, String index, String type) throws IOException;
 
     /**
-     *  Create a index in Elasticsearch from map value using map key  as index field name and
+     *  Update a index in Elasticsearch from map value using map key  as index field name and
      *  map value as index field value
-     *
-     *  field_name (key): field_value (value)
-     *
-     *  Only non-null value fields will be considered.
      *
      * @param indexValues key value map content to be updated
      * @param index Elasticsearch index
@@ -101,7 +90,7 @@ public interface ElasticsearchService<E extends Item> {
     void update(Map<String, Object> indexValues, String index, String type,String indexId) throws IOException;
 
     /**
-     * Create a given entity index in Elasticsearch
+     * Delete a given entity index in Elasticsearch
      *
      * @param entity entity whose content is to be deleted
      * @param index Elasticsearch index
@@ -111,7 +100,7 @@ public interface ElasticsearchService<E extends Item> {
     void delete(E entity,String index,String type) throws IOException;
 
     /**
-     * Create an entity with a given index ID in Elasticsearch
+     * Delete an entity with a given index ID in Elasticsearch
      *
      * @param indexId  ID of an index to be deleted
      * @param index Elasticsearch index
