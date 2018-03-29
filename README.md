@@ -8,6 +8,8 @@ The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-co
 
 Foe this bookcollection application, all methods will operate on index names: *library* with type *book*.
 
+UI is built using Vaadin Framework, UI view for CRUD operations on the view is: [**BookView**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/view/BookView.java).
+
 ### 1.1. Create Operation
 
 To create an index the following two methods are implemented.
