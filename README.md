@@ -172,7 +172,10 @@ Those unit tests are in the class: [**ElasticsearchServiceImplIntegrationTest**]
 
 Built with spring-boot version 1.5.9
 
-## 7. Improvements
+## 7. Known Issues
+UI does not immediately refresh after an index is added,updated or removed to/in/from Elasticsearch
+
+## 8. Improvements
 
 These features may be added to the application for improvement:
 - Keyword based search
@@ -183,7 +186,7 @@ These features may be added to the application for improvement:
 - Healt checks
 
 
-## 8.References
+## 9.References
 Install Docker
 https://docs.docker.com/toolbox/overview/
 
