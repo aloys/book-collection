@@ -73,6 +73,9 @@ public interface ElasticsearchService<E extends Item> {
 }
 ```
 
+For a given entity E, the first method will call the second method with indexValues map as the values of the fields
+of an entity E resolved by reflection. Any non-null field value will be updated.
+
 ### 1.4. Delete Operation
 
 To delete an index the following two methods are implemented.
@@ -90,8 +93,6 @@ public interface ElasticsearchService<E extends Item> {
 }
 ```
 
-For a given entity E, the first method will call the second method with indexValues map as the values of the fields
-of entity E found by reflection. Any non-null field value will be updated.
 
 ## 2. Screenshots
 
