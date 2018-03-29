@@ -3,7 +3,7 @@
 
 ## 1. Main Logic
 
-This application is simple book collection with CRUD operations on a Book entity, using Elasticsearch for persistence.
+This application is simple book collection with CRUD operations on a Book entity, using Ddcument based search engine Elasticsearch for persistence.
 The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java):
 
 Foe this bookcollection application, all methods will operate on index names: *library* with type *book*.
@@ -101,11 +101,12 @@ These are sample view screenshots for the indexing (Create) operation.
 
 ## 3. Execution
 
-- Download the **customer-review.jar** in *dist* directory
+### 3.1 Start UI Web Application
+
 - Run the following command:
 
 ```console
-java -jar customer-review.jar
+java -jar target/book-collection.war
 ```
 - Open this URL in the browser:
 http://localhost:8080/
@@ -113,11 +114,38 @@ http://localhost:8080/
 This will execute main class: customer.review.framework.MainApplication
 (https://github.com/aloys/customer-review/blob/master/src/main/java/customer/review/framework/MainApplication.java)
 
-That jar is an uber-jar including all dependencies with an embedded **H2 database server**, and **Tomcat web server**.
-
-The application will initialize _5 users_ and _5 products_ test data for convinience.
+That jar is an uber-jar including all dependencies with an embedded **Tomcat web server**.
 
 **Requirements**: Java Runtime Enviroment (JRE) version 8 or higher.
+
+### 3.1 Start Elasticsearch
+
+*Case 1: Using Docker Container*
+
+If you have docker client (or toolbox) on your machine, then run this command to create a elk docker container:
+
+```console
+docker-compose up elk;
+```
+
+This will starts Elasticsearch, Logastah, and kibana
+
+To access Kibana UI open this URL:
+http://localhost:5601/
+
+To acceess Elasticsearch open this URL
+http://localhost:9200/
+
+*Case 2: Using External Elasticsearch*
+
+If you wish to use another Elasticsearch installation run the application with these two runtime parameters _elasticsearch.server.host_ and
+_elasticsearch.server.port_ for the host and port respectively
+
+
+```console
+java -jar target/book-collection.war -Delasticsearch.server.host=${HOST} -D=elasticsearch.server.port=${PORT}
+```
+
 
 ## 4. Compile
 
@@ -127,43 +155,41 @@ mvn clean install;
 ```
 **Requirements**: Java Development Kit(JDK) version 8 or higher.
 
-## 5. Framework
+## 5. Compile
+
+Unit tests provided is an integration test which requires Elasticsearch server to be up.
+Those unit tests are in the class: [**ElasticsearchServiceImplIntegrationTest**](https://github.com/aloys/book-collection/blob/master/src/test/java/io/lab/biblio/ElasticsearchServiceImplIntegrationTest.java)
+
+## 6. Framework
 
 | Library | Version | Usage |
 |---------|---------|---------|
 | Vaadin | 8.1.7 | Web Application UI |
 | Spring | 4.3.13 | DI, Web application components, Service transaction |
-| Hibernate  | 5.0.12 | ORM / JPA |
+| Elasticsearch  | 6.2.3 | Document based search engine |
 
 Built with spring-boot version 1.5.9
 
+## 7. Improvements
+
+These features may be added to the application for improvement:
+- Keyword based search
+- Pagination query
+- Expose connection pool configuration for perfomance tuning
+- Converter to handle all datatypes
+- Securing application functionalities access
+- Healt checks
 
 
-
-
-
-# book-collection
-
-
-mvn install;
-
-Run integration test
-mvn install -DskipTests=false;
-
+## 8.References
 Install Docker
 https://docs.docker.com/toolbox/overview/
 
-
-Start ELK Stack
-docker-compose up elk;
-
-
-Kibana
-http://localhost:5601/
-
-Elastic Search
-http://localhost:9200/
-
-Version: 6.2.3
-
+Docket Image
 https://hub.docker.com/r/sebp/elk/builds/bghnala4hczqkuqunvfykec/
+
+Elastic Search API
+https://www.elastic.co/guide/en/elasticsearch/client/java-rest/master/java-rest-high.html
+
+Vaadin - UI Framework
+https://vaadin.com/
