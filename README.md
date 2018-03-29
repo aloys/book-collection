@@ -6,9 +6,9 @@
 This application is simple book collection with CRUD operations on a [**Book**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/model/Book.java) entity, using document based search engine Elasticsearch for persistence.
 The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface: [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java).
 
-Foe this bookcollection application, all methods will operate on index names: *library* with type *book*.
+For this Book Collection application, all methods will operate on index named: **library** with type **book**.
 
-UI is built using Vaadin Framework, UI view for CRUD operations on the view is: [**BookView**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/view/BookView.java).
+UI is built using Vaadin Framework, UI view class for CRUD operations is: [**BookView**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/view/BookView.java).
 
 ### 1.1. Create Operation
 
