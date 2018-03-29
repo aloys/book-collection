@@ -103,10 +103,6 @@ public class BookView extends AbstractCrudView<Book> {
         bindField(authorField, "author", String.class, String.class);
         components.add(authorField);
 
-        final TextField publishDateField = new TextField("Publish Year");
-        bindField(publishDateField, "publishYear", String.class, Integer.class);
-        components.add(publishDateField);
-
         return components;
     }
 

@@ -17,7 +17,6 @@ public class Book implements Item {
     @NotNull
     private String author;
 
-    private int publishYear;
 
     public Book() {
         super();
@@ -53,13 +52,5 @@ public class Book implements Item {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public int getPublishYear() {
-        return publishYear;
-    }
-
-    public void setPublishYear(int publishYear) {
-        this.publishYear = publishYear;
     }
 }

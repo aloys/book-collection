@@ -39,7 +39,6 @@ public class ElasticsearchServiceImplIntegrationTest {
         book = new Book();
         book.setTitle("Title 01");
         book.setAuthor("Author 01");
-        book.setPublishYear(1980);
     }
 
     @After
@@ -67,7 +66,6 @@ public class ElasticsearchServiceImplIntegrationTest {
         Assert.assertEquals(book.getId(), foundBook.get().getId());
         Assert.assertEquals(book.getAuthor(), foundBook.get().getAuthor());
         Assert.assertEquals(book.getTitle(), foundBook.get().getTitle());
-        Assert.assertEquals(book.getPublishYear(), foundBook.get().getPublishYear());
     }
 
 
@@ -87,7 +85,6 @@ public class ElasticsearchServiceImplIntegrationTest {
         Assert.assertEquals(book.getId(), foundBook.get().getId());
         Assert.assertEquals(book.getAuthor(), foundBook.get().getAuthor());
         Assert.assertEquals(book.getTitle(), foundBook.get().getTitle());
-        Assert.assertEquals(book.getPublishYear(), foundBook.get().getPublishYear());
     }
 
     @Test
