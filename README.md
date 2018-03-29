@@ -192,7 +192,7 @@ These features may be added to the application for improvement:
 Install Docker
 https://docs.docker.com/toolbox/overview/
 
-Docket Image
+ELK Docker Image
 https://hub.docker.com/r/sebp/elk/builds/bghnala4hczqkuqunvfykec/
 
 Elastic Search API
