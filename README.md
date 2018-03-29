@@ -111,8 +111,8 @@ java -jar target/book-collection.war
 - Open this URL in the browser:
 http://localhost:8080/
 
-This will execute main class: customer.review.framework.MainApplication
-(https://github.com/aloys/customer-review/blob/master/src/main/java/customer/review/framework/MainApplication.java)
+This will execute main class: _io.lab.biblio.framework.MainApplication_
+(https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/framework/MainApplication.java)
 
 That jar is an uber-jar including all dependencies with an embedded **Tomcat web server**.
 
