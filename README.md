@@ -160,7 +160,7 @@ mvn clean install;
 
 ## 5. Testing
 
-Unit tests provided is an integration test which requires Elasticsearch server to be up.
+Unit tests provided is an integration test which requires Elasticsearch server to be up on localhost server and port 9200.
 Those unit tests are in the class: [**ElasticsearchServiceImplIntegrationTest**](https://github.com/aloys/book-collection/blob/master/src/test/java/io/lab/biblio/ElasticsearchServiceImplIntegrationTest.java)
 
 ## 6. Framework
@@ -181,10 +181,11 @@ UI does not immediately refresh after an index is added,updated or removed to/in
 These features may be added to the application for improvement:
 - Keyword based search
 - Pagination query
-- Expose connection pool configuration for perfomance tuning
+- Expose connection pool configuration for performance tuning
 - Converter to handle all datatypes
 - Securing application functionalities access
-- Healt checks
+- Health checks
+- Expose the ElasticsearchService via API
 
 
 ## 9.References
