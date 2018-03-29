@@ -114,7 +114,7 @@ http://localhost:8080/
 This will execute main class: _io.lab.biblio.framework.MainApplication_
 (https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/framework/MainApplication.java)
 
-That jar is an uber-jar including all dependencies with an embedded **Tomcat web server**.
+That [**book-collection.war**](https://github.com/aloys/book-collection/blob/master/target/book-collection.war) is an uber-jar including all dependencies with an embedded **Tomcat web server**.
 
 **Requirements**: Java Runtime Enviroment (JRE) version 8 or higher.
 
