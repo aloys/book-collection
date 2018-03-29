@@ -6,35 +6,89 @@
 This application is simple book collection with CRUD operations on a Book entity, using Elasticsearch for persistence.
 The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java):
 
-```python
+Foe this bookcollection application, all methods will operate on index names: *library* with type *book*.
+
+### 1.1. Create Operation
+
+To create an index the following two methods are implemented.
+
+
+```java
 public interface ElasticsearchService<E extends Item> {
 
-    Optional<E> findById(Class<E> entityClass, String index, String type, String indexId) throws IOException;
-
-    List<E> search(Class<E> entityClass, String index,String type) throws IOException;
-
+    ...
     String create(E entity, String index, String type) throws IOException;
 
     String create(Map<String, Object> indexValues, String index, String type) throws IOException;
+    ...
 
-    void update(E entity, String index, String type) throws IOException;
-
-    void update(Map<String, Object> indexValues, String index, String type,String indexId) throws IOException;
-
-    void delete(E entity,String index,String type) throws IOException;
-
-    void delete(String indexId,String index,String type) throws IOException;
 }
 ```
 
+For a given entity E, the first method will call the second method with indexValues map as the values of the fields
+of entity E found by reflection. Any non-null field value will be indexed.
 
-| Operation | Implementation Method|
-|-------------|---------------------------------------|
-| List all indexes | **search**  method in _ReviewService_ class|
-| Create a customer review after performing these checks:<br />  (1) Check if Customer’s comment does not contain any of these curse words<br />  (2) Check if the rating is not out of range, mimimum rating > 0| **save**  method in _ReviewService_ class|
+A new *Elasticsearch index and type* will be created, if not existing.
 
-For details see:<br />
-(https://github.com/aloys/customer-review/blob/master/src/main/java/customer/review/application/review/ReviewService.java)
+Index id is calculated based on system current time (in milliseconds).
+
+### 1.2. Read Operation
+
+There are two methods one to read all index (match all criteria) and another one to read
+one unique index by its ID.
+
+
+```java
+public interface ElasticsearchService<E extends Item> {
+
+    ...
+    Optional<E> findById(Class<E> entityClass, String index, String type, String indexId) throws IOException;
+
+    List<E> search(Class<E> entityClass, String index,String type) throws IOException;
+    ...
+
+}
+```
+
+The _findByID_ method will throw an _IndexNotFoundException_ exception if no result can be found, and search method will return
+empty list in case there is no index yet created.
+
+### 1.3. Update Operation
+
+To update an index the following two methods are implemented.
+
+
+```java
+public interface ElasticsearchService<E extends Item> {
+
+    ...
+     void update(E entity, String index, String type) throws IOException;
+
+     void update(Map<String, Object> indexValues, String index, String type,String indexId) throws IOException;
+    ...
+
+}
+```
+
+### 1.4. Delete Operation
+
+To delete an index the following two methods are implemented.
+
+
+```java
+public interface ElasticsearchService<E extends Item> {
+
+    ...
+    void delete(E entity,String index,String type) throws IOException;
+
+    void delete(String indexId,String index,String type) throws IOException;
+    ...
+
+}
+```
+
+For a given entity E, the first method will call the second method with indexValues map as the values of the fields
+of entity E found by reflection. Any non-null field value will be updated.
 
 ## 2. Screenshots
 
