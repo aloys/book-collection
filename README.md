@@ -3,7 +3,7 @@
 
 ## 1. Main Logic
 
-This application is simple book collection with CRUD operations on a Book entity, using Ddcument based search engine Elasticsearch for persistence.
+This application is simple book collection with CRUD operations on a [**Book**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/model/Book.java) entity, using Ddcument based search engine Elasticsearch for persistence.
 The main service [**ElasticsearchServiceImpl**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java) is the implementation of this interface [**ElasticsearchService**](https://github.com/aloys/book-collection/blob/master/src/main/java/io/lab/biblio/application/service/ElasticsearchServiceImpl.java):
 
 Foe this bookcollection application, all methods will operate on index names: *library* with type *book*.
