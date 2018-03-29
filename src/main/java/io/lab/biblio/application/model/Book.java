@@ -17,7 +17,6 @@ public class Book implements Item {
     @NotNull
     private String author;
 
-    @Min(0)
     private int publishYear;
 
     public Book() {

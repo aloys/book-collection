@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import javax.annotation.Resource;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validator;
+import java.util.*;
 
 
 /**
@@ -38,6 +39,10 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
 
     @Autowired
     protected ElasticsearchService<E> service;
+
+
+    @Resource
+    private transient Validator validator;
 
     @PostConstruct
     public void initialize() {
@@ -179,6 +184,14 @@ public abstract class AbstractCrudView<E extends Item> extends AbstractView<E> {
             logger.error("No column with id:{} for grid in view of entity: {}", columnName, entityClass.getName());
         }
     }
+
+    protected final void validate(E entity) {
+        final Set<ConstraintViolation<E>> violations = validator.validate(entity);
+        if(!violations.isEmpty()){
+            throw new ConstraintViolationException(violations);
+        }
+    }
+
 
     public boolean isReadOnlyMode() {
         return readOnlyMode;

@@ -6,6 +6,7 @@ import io.lab.biblio.framework.view.notification.NotificationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class ApplicationErrorHandler extends DefaultErrorHandler {
 
     static {
         WARNING_EXCEPTIONS.add(IllegalArgumentException.class);
+        WARNING_EXCEPTIONS.add(ConstraintViolationException.class);
     }
 
     private static class ApplicationErrorHandlerReference {

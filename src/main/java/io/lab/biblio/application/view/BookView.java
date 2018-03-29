@@ -67,6 +67,8 @@ public class BookView extends AbstractCrudView<Book> {
         final Book book = getBinder().getBean();
         try {
 
+            validate(book);
+
             if(book.getId() == null || book.getId().trim().length() == 0){
                 service.create(book, ELASTICSEARCH_INDEX, ELASTICSEARCH_TYPE);
             }else{
