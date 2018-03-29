@@ -131,7 +131,7 @@ If you have docker client (or toolbox) on your machine, then run this command to
 docker-compose up elk;
 ```
 
-This will starts Elasticsearch, Logastah, and kibana
+This will starts Elasticsearch, Logastah, and kibana docker container.
 
 To access Kibana UI open this URL:
 http://localhost:5601/
