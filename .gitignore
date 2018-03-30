@@ -3,3 +3,7 @@ target/*classes/
 target/*sources/
 target/temp/
 !/target/book-collection.war
+/target/book-collection/
+/target/maven-status/
+/target/maven-archiver/
+/target/book-collection.war.original
