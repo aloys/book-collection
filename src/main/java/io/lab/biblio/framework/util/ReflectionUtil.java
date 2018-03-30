@@ -32,6 +32,7 @@ public final class ReflectionUtil {
         }
     }
 
+
     public static Map<String, Object> readValues(Object object) {
         if (object == null) {
             return Collections.EMPTY_MAP;
@@ -47,6 +48,10 @@ public final class ReflectionUtil {
         } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void setValue(Object object, String name, Object value) {
+        writeValues(object,Collections.singletonMap(name,value));
     }
 
     public static void writeValues(Object object, Map<String, Object> values) {

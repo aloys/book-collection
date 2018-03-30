@@ -1,2 +1,5 @@
-.idea/
-
+.idea/*
+target/*classes/
+target/*sources/
+target/temp/
+!/target/book-collection.war

@@ -4,9 +4,11 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
 import io.lab.biblio.application.model.Book;
+import io.lab.biblio.application.service.ElasticsearchManager;
 import io.lab.biblio.framework.view.AbstractCrudView;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,20 @@ public class BookView extends AbstractCrudView<Book> {
     public static final String ELASTICSEARCH_TYPE = "book";
 
 
+    @Resource
+    private ElasticsearchManager elasticsearchManager;
+
+
     @PostConstruct
     public void initialize() {
+
+        try {
+            //Try to create Elasticsearch index
+            elasticsearchManager.createIndex(ELASTICSEARCH_INDEX);
+        } catch (IOException e) {
+            logger.error(e.getMessage(),e);
+        }
+
         super.initialize();
         //Table columns in sorted order
         grid.setColumns("id","title","author");
